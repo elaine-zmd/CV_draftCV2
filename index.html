@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朱梦丹 · Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080810;
+  --bg2:#0d0d1a;
+  --bg3:#111124;
+  --purple:#a855f7;
+  --purple-dim:#7c3aed;
+  --purple-glow:rgba(168,85,247,0.15);
+  --purple-border:rgba(168,85,247,0.25);
+  --text:#e8e8f0;
+  --text-muted:#8888aa;
+  --text-dim:#4a4a6a;
+  --glass:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --neon-purple:#c084fc;
+  --accent-cyan:#67e8f9;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans SC',sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* Noise overlay */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.4;
+}
+
+/* Grid background */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:0 4rem;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  background:rgba(8,8,16,0.7);
+  border-bottom:1px solid var(--glass-border);
+  transition:all 0.3s;
+}
+.nav-logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem;
+  font-weight:600;
+  letter-spacing:0.05em;
+  color:var(--text);
+  text-decoration:none;
+}
+.nav-logo span{color:var(--purple)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:0.8rem;
+  font-family:'Space Grotesk',sans-serif;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  text-decoration:none;
+  transition:color 0.2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;left:0;right:0;
+  height:1px;
+  background:var(--purple);
+  transform:scaleX(0);
+  transition:transform 0.3s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+/* HERO */
+#hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:0 4rem;
+  overflow:hidden;
+  z-index:1;
+}
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(100px);
+  pointer-events:none;
+}
+.orb1{
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(124,58,237,0.2), transparent 70%);
+  top:-100px;right:-100px;
+  animation:orbFloat 8s ease-in-out infinite;
+}
+.orb2{
+  width:400px;height:400px;
+  background:radial-gradient(circle, rgba(103,232,249,0.08), transparent 70%);
+  bottom:-50px;left:10%;
+  animation:orbFloat 12s ease-in-out infinite reverse;
+}
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-20px) scale(1.05)}
+  66%{transform:translate(-20px,15px) scale(0.95)}
+}
+.hero-content{position:relative;max-width:800px}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;
+  color:var(--purple);
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.hero-eyebrow::before{
+  content:'';
+  display:inline-block;
+  width:40px;height:1px;
+  background:var(--purple);
+}
+.hero-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(3.5rem,8vw,6.5rem);
+  font-weight:700;
+  line-height:1.0;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+}
+.hero-name .char-zh{
+  color:var(--text);
+  display:block;
+}
+.hero-name .char-en{
+  color:transparent;
+  -webkit-text-stroke:1px rgba(168,85,247,0.5);
+  display:block;
+  font-size:0.6em;
+  letter-spacing:0.05em;
+}
+.hero-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.1rem;
+  font-weight:400;
+  color:var(--text-muted);
+  margin-bottom:2rem;
+  letter-spacing:0.05em;
+}
+.hero-title span{
+  color:var(--neon-purple);
+  font-weight:500;
+}
+.hero-summary{
+  font-size:1rem;
+  line-height:1.8;
+  color:var(--text-muted);
+  max-width:600px;
+  margin-bottom:3rem;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem}
+.tag{
+  padding:0.3rem 0.9rem;
+  border:1px solid var(--purple-border);
+  border-radius:100px;
+  font-size:0.75rem;
+  font-family:'Space Grotesk',sans-serif;
+  color:var(--neon-purple);
+  letter-spacing:0.08em;
+  background:var(--purple-glow);
+  transition:all 0.3s;
+}
+.tag:hover{
+  background:rgba(168,85,247,0.25);
+  border-color:var(--purple);
+  transform:translateY(-2px);
+}
+.hero-cta{display:flex;gap:1rem;align-items:center}
+.btn-primary{
+  padding:0.75rem 2rem;
+  background:var(--purple);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.85rem;
+  font-weight:500;
+  letter-spacing:0.08em;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.btn-primary::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,0.1));
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(168,85,247,0.4);
+}
+.btn-primary:hover::before{opacity:1}
+.btn-ghost{
+  padding:0.75rem 2rem;
+  background:transparent;
+  color:var(--text-muted);
+  border:1px solid var(--glass-border);
+  border-radius:6px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.85rem;
+  letter-spacing:0.08em;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 0.3s;
+}
+.btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
+
+/* SECTION commons */
+section{position:relative;z-index:1;padding:8rem 4rem}
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  color:var(--purple);
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.section-label::before{
+  content:'';
+  width:24px;height:1px;
+  background:var(--purple);
+}
+.section-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:600;
+  letter-spacing:-0.02em;
+  margin-bottom:1rem;
+  line-height:1.1;
+}
+.section-subtitle{
+  color:var(--text-muted);
+  font-size:1rem;
+  max-width:600px;
+  margin-bottom:4rem;
+}
+
+/* GLASS CARD */
+.glass-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
+  position:relative;
+  overflow:hidden;
+}
+.glass-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.05),transparent 50%);
+  pointer-events:none;
+}
+.glass-card:hover{
+  border-color:var(--purple-border);
+  background:rgba(168,85,247,0.06);
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px var(--purple-border),0 0 40px rgba(168,85,247,0.08);
+}
+
+/* STATS ROW */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+  margin-bottom:6rem;
+}
+.stat-card{
+  padding:2rem;
+  text-align:center;
+}
+.stat-number{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:2.5rem;
+  font-weight:700;
+  color:var(--neon-purple);
+  display:block;
+  line-height:1;
+  margin-bottom:0.5rem;
+}
+.stat-label{
+  font-size:0.8rem;
+  color:var(--text-muted);
+  letter-spacing:0.05em;
+}
+
+/* EXPERIENCE - Bento grid */
+#experience{background:var(--bg2)}
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:auto;
+  gap:1.5rem;
+}
+.bento-card{
+  padding:2rem;
+  position:relative;
+}
+.bento-large{grid-column:span 7}
+.bento-small{grid-column:span 5}
+.bento-full{grid-column:span 12}
+.bento-half{grid-column:span 6}
+
+/* Breathing neon border */
+@keyframes breathe{
+  0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,0),inset 0 0 0 0 rgba(168,85,247,0)}
+  50%{box-shadow:0 0 20px rgba(168,85,247,0.15),inset 0 0 20px rgba(168,85,247,0.03)}
+}
+.bento-card.featured{
+  animation:breathe 4s ease-in-out infinite;
+  border-color:rgba(168,85,247,0.2);
+}
+.company-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.25rem 0.75rem;
+  border-radius:100px;
+  font-size:0.7rem;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:500;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.tag-jd{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3)}
+.tag-tiktok{background:rgba(103,232,249,0.1);color:var(--accent-cyan);border:1px solid rgba(103,232,249,0.2)}
+.tag-vivo{background:rgba(59,130,246,0.1);color:#60a5fa;border:1px solid rgba(59,130,246,0.2)}
+.tag-ct{background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.2)}
+.exp-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.2rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:0.25rem;
+  line-height:1.3;
+}
+.exp-role{
+  font-size:0.85rem;
+  color:var(--purple);
+  font-family:'Space Grotesk',sans-serif;
+  margin-bottom:0.5rem;
+  font-weight:500;
+}
+.exp-period{
+  font-size:0.75rem;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--text-dim);
+  margin-bottom:1.25rem;
+}
+.exp-okr{
+  font-size:0.8rem;
+  color:var(--text-muted);
+  line-height:1.7;
+  margin-bottom:1.25rem;
+  padding:0.75rem 1rem;
+  background:rgba(168,85,247,0.05);
+  border-left:2px solid var(--purple-dim);
+  border-radius:0 4px 4px 0;
+}
+.metrics-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  margin-top:1rem;
+}
+.metric-badge{
+  padding:0.2rem 0.6rem;
+  background:rgba(168,85,247,0.1);
+  border:1px solid var(--purple-border);
+  border-radius:4px;
+  font-size:0.7rem;
+  font-family:'JetBrains Mono',monospace;
+  color:var(--neon-purple);
+  letter-spacing:0.05em;
+}
+.metric-badge.green{
+  background:rgba(74,222,128,0.08);
+  border-color:rgba(74,222,128,0.2);
+  color:#4ade80;
+}
+.metric-badge.cyan{
+  background:rgba(103,232,249,0.08);
+  border-color:rgba(103,232,249,0.2);
+  color:var(--accent-cyan);
+}
+.exp-bullets{list-style:none;margin-top:0.75rem}
+.exp-bullets li{
+  font-size:0.82rem;
+  color:var(--text-muted);
+  line-height:1.7;
+  padding-left:1rem;
+  position:relative;
+  margin-bottom:0.5rem;
+}
+.exp-bullets li::before{
+  content:'▸';
+  position:absolute;
+  left:0;
+  color:var(--purple);
+  font-size:0.7rem;
+  top:0.1em;
+}
+
+/* EDUCATION */
+#education{background:var(--bg)}
+.edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.edu-card{padding:2.5rem}
+.edu-school{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1.4rem;
+  font-weight:600;
+  margin-bottom:0.3rem;
+  color:var(--text);
+}
+.edu-badge-row{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.edu-badge{
+  padding:0.2rem 0.6rem;
+  border-radius:4px;
+  font-size:0.68rem;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:500;
+  letter-spacing:0.08em;
+}
+.badge-985{background:rgba(168,85,247,0.15);color:var(--neon-purple);border:1px solid var(--purple-border)}
+.badge-c9{background:rgba(168,85,247,0.08);color:var(--purple);border:1px solid rgba(168,85,247,0.15)}
+.badge-211{background:rgba(103,232,249,0.1);color:var(--accent-cyan);border:1px solid rgba(103,232,249,0.2)}
+.edu-major{
+  font-size:0.9rem;
+  color:var(--text-muted);
+  margin-bottom:0.25rem;
+}
+.edu-period{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;
+  color:var(--text-dim);
+  margin-bottom:1.5rem;
+}
+.honor-list{list-style:none}
+.honor-list li{
+  font-size:0.8rem;
+  color:var(--text-muted);
+  padding:0.4rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+}
+.honor-list li::before{
+  content:'◆';
+  font-size:0.5rem;
+  color:var(--purple);
+  flex-shrink:0;
+}
+
+/* SKILLS */
+#skills{background:var(--bg2)}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.skill-group{margin-bottom:2rem}
+.skill-group-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.75rem;
+  font-weight:500;
+  color:var(--text-muted);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  padding-bottom:0.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.skill-chips{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-chip{
+  padding:0.35rem 0.85rem;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:6px;
+  font-size:0.78rem;
+  font-family:'Space Grotesk',sans-serif;
+  color:var(--text-muted);
+  transition:all 0.3s;
+  cursor:default;
+}
+.skill-chip:hover{
+  border-color:var(--purple-border);
+  color:var(--text);
+  background:var(--purple-glow);
+  transform:translateY(-2px);
+}
+.skill-chip.highlight{
+  border-color:var(--purple-border);
+  color:var(--neon-purple);
+  background:var(--purple-glow);
+}
+.lang-card{
+  padding:2rem;
+  text-align:center;
+  margin-bottom:1.5rem;
+}
+.lang-score{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:3rem;
+  font-weight:700;
+  color:var(--neon-purple);
+  line-height:1;
+  margin-bottom:0.25rem;
+}
+.lang-label{font-size:0.8rem;color:var(--text-muted)}
+.lang-sub{
+  font-size:0.75rem;
+  color:var(--text-dim);
+  font-family:'JetBrains Mono',monospace;
+  margin-top:0.25rem;
+}
+
+/* CONTACT */
+#contact{
+  background:var(--bg);
+  text-align:center;
+  padding:8rem 4rem 10rem;
+}
+.contact-card{
+  max-width:700px;
+  margin:0 auto;
+  padding:4rem;
+}
+.contact-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;
+  font-weight:500;
+  color:var(--text-muted);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  margin-bottom:0.5rem;
+}
+.contact-headline{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:2rem;
+  font-weight:600;
+  letter-spacing:-0.02em;
+  margin-bottom:1.5rem;
+  line-height:1.2;
+}
+.contact-headline span{color:var(--neon-purple)}
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-top:2.5rem;
+}
+.contact-link{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.6rem 1.2rem;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:8px;
+  font-size:0.82rem;
+  font-family:'Space Grotesk',sans-serif;
+  color:var(--text-muted);
+  text-decoration:none;
+  transition:all 0.3s;
+}
+.contact-link:hover{
+  border-color:var(--purple-border);
+  color:var(--text);
+  background:var(--purple-glow);
+  transform:translateY(-2px);
+}
+.contact-icon{
+  width:16px;height:16px;
+  opacity:0.6;
+}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  padding:2rem 4rem;
+  border-top:1px solid rgba(255,255,255,0.04);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:0.75rem;
+  color:var(--text-dim);
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* SCROLL REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.7s cubic-bezier(0.23,1,0.32,1),transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* PARALLAX HERO */
+.parallax-bg{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+/* DIVIDER */
+.section-divider{
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(168,85,247,0.3),transparent);
+  margin:0;
+  position:relative;z-index:1;
+}
+
+/* Cursor dot */
+.cursor-dot{
+  position:fixed;
+  width:6px;height:6px;
+  background:var(--purple);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  transition:transform 0.1s;
+  mix-blend-mode:screen;
+}
+.cursor-ring{
+  position:fixed;
+  width:32px;height:32px;
+  border:1px solid rgba(168,85,247,0.5);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  transition:transform 0.15s ease-out,opacity 0.3s;
+}
+
+/* Highlight line inside bento */
+.bento-card .highlight-line{
+  position:absolute;
+  top:0;left:2rem;right:2rem;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--purple),transparent);
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.bento-card:hover .highlight-line{opacity:0.6}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(168,85,247,0.3);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:rgba(168,85,247,0.6)}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  #hero,section{padding:5rem 1.5rem}
+  .bento-large,.bento-small,.bento-half{grid-column:span 12}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .edu-grid,.skills-layout{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">ZMD<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#experience">经历</a></li>
+    <li><a href="#education">学历</a></li>
+    <li><a href="#skills">能力</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Product Manager · Strategy · AI</div>
+    <h1 class="hero-name">
+      <span class="char-zh">朱梦丹</span>
+      <span class="char-en">Zhu Mengdan</span>
+    </h1>
+    <p class="hero-title">南京大学校研究生会主席 · <span>搜索策略 × 达人策略 × AI产品</span></p>
+    <p class="hero-summary">具有电商搜索策略、达人策略及 AI 产品经验，熟悉 AI 赋能电商业务范式。雅思口语 7 分，英语可视为工作语言；具有创造力、想象力，敢挑战。</p>
+    <div class="hero-tags">
+      <span class="tag">搜索策略</span>
+      <span class="tag">AI产品</span>
+      <span class="tag">达人运营</span>
+      <span class="tag">GMV增长</span>
+      <span class="tag">IELTS 7</span>
+      <span class="tag">SQL · Python</span>
+      <span class="tag">AB Test</span>
+      <span class="tag">Vibe Coding</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">查看项目经历</a>
+      <a href="#contact" class="btn-ghost">联系我</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STATS -->
+<section style="padding:5rem 4rem;background:var(--bg2)">
+  <div class="stats-row">
+    <div class="glass-card stat-card reveal">
+      <span class="stat-number">4+</span>
+      <span class="stat-label">顶级互联网实习</span>
+    </div>
+    <div class="glass-card stat-card reveal reveal-delay-1">
+      <span class="stat-number">GMV<br style="font-size:0.5em">+1.30%</span>
+      <span class="stat-label">京东搜索项目单项提升</span>
+    </div>
+    <div class="glass-card stat-card reveal reveal-delay-2">
+      <span class="stat-number">38W+</span>
+      <span class="stat-label">AI搜索UV增量</span>
+    </div>
+    <div class="glass-card stat-card reveal reveal-delay-3">
+      <span class="stat-number">7</span>
+      <span class="stat-label">雅思口语分数</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work Experience</div>
+  <h2 class="section-title">实习经历</h2>
+  <p class="section-subtitle">从搜索策略到 AI 产品，横跨电商、内容与智能硬件赛道的完整成长弧线。</p>
+
+  <div class="bento-grid">
+
+    <!-- JD - Large Card -->
+    <div class="glass-card bento-card bento-large featured reveal">
+      <div class="highlight-line"></div>
+      <span class="company-tag tag-jd">京东 · JD.COM</span>
+      <h3 class="exp-title">搜索及 AI 搜产品部</h3>
+      <div class="exp-role">搜索策略产品经理</div>
+      <div class="exp-period">2026.02 — 2026.05</div>
+      <div class="exp-okr">围绕京东 PC 端主搜核心场景，优化搜索导购体验策略及搭建搜索 B 面 AI 能力，提升搜索场域 GMV 及 UV 价值；支持优惠券凑单搜索场景效率优化。</div>
+      <ul class="exp-bullets">
+        <li><strong style="color:var(--text)">政企用户搜索导购体验升级</strong>——针对 Bpin 用户 UV 少、GMV 高的特点，区分 B 筛选优先级，优先透出对公开票等信息</li>
+        <li><strong style="color:var(--text)">AI 搜索能力（搜索B面）建设</strong>——设计 AI 搜 B 面冷启策略，新增 AI 搜按钮及商卡交互条引流，制定反聚筛选项策略</li>
+        <li><strong style="color:var(--text)">优惠券凑单场景策略优化</strong>——制定复购降权策略与个性化提升策略，粗排模型增加地域/行为流/购买力特征</li>
+      </ul>
+      <div class="metrics-row">
+        <span class="metric-badge green">GMV +1.30%</span>
+        <span class="metric-badge green">UV价值 +2.87%</span>
+        <span class="metric-badge cyan">搜索UV +38W</span>
+        <span class="metric-badge">UV成单率 +2.33pp</span>
+        <span class="metric-badge">UCTR +4.96pp</span>
+      </div>
+    </div>
+
+    <!-- TikTok - Small Card -->
+    <div class="glass-card bento-card bento-small reveal reveal-delay-1">
+      <div class="highlight-line"></div>
+      <span class="company-tag tag-tiktok">字节跳动 · TikTok PGC</span>
+      <h3 class="exp-title">Creator Academy</h3>
+      <div class="exp-role">达人策略产品经理</div>
+      <div class="exp-period">2025.06 — 2025.11</div>
+      <div class="exp-okr">优化 Creator Academy 达人教育产品，通过课程内容分发策略拉齐作者认知与平台业务目标，沉淀海外达人教育业务闭环解决方案。</div>
+      <ul class="exp-bullets">
+        <li>圈定 150 万高潜用户，区分课程类型多渠道触达，引导 1min+ 长视频创作偏好</li>
+        <li>补齐 Web 能力并落地视频课程，索引结构由文章拓展到段落</li>
+      </ul>
+      <div class="metrics-row">
+        <span class="metric-badge green">DAU +3.69%</span>
+        <span class="metric-badge">满意度 +3.72pp</span>
+        <span class="metric-badge cyan">PUB/U +1.49%</span>
+      </div>
+    </div>
+
+    <!-- VIVO -->
+    <div class="glass-card bento-card bento-half reveal reveal-delay-2">
+      <div class="highlight-line"></div>
+      <span class="company-tag tag-vivo">VIVO · 内容AI平台</span>
+      <h3 class="exp-title">内容分发事业部</h3>
+      <div class="exp-role">AI 内容策略产品经理</div>
+      <div class="exp-period">2025.03 — 2025.06</div>
+      <ul class="exp-bullets">
+        <li>搭建短剧 AIGC 智能素材生成体系，构建封面/标题/高光素材生成模板</li>
+        <li>设计大模型管理评测系统，规范标注评测流程，首落小说文生图场景</li>
+      </ul>
+      <div class="metrics-row">
+        <span class="metric-badge green">单素材ROI +12.4%</span>
+        <span class="metric-badge">CTR +2.94pp</span>
+      </div>
+    </div>
+
+    <!-- China Telecom -->
+    <div class="glass-card bento-card bento-half reveal reveal-delay-3">
+      <div class="highlight-line"></div>
+      <span class="company-tag tag-ct">中国电信 · 天翼数字生活</span>
+      <h3 class="exp-title">全屋智能事业部</h3>
+      <div class="exp-role">智能家居产品经理</div>
+      <div class="exp-period">2024.12 — 2025.02</div>
+      <ul class="exp-bullets">
+        <li>独立负责杭州控客业务，设计定制化接入方案与功能适配逻辑</li>
+        <li>聚焦传感器响应延迟、功耗等核心指标，推动品类"应连尽联"</li>
+      </ul>
+      <div class="metrics-row">
+        <span class="metric-badge green">控客DAU +42.35%</span>
+        <span class="metric-badge">绑定率 +18.73pp</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">学历背景</h2>
+  <p class="section-subtitle">C9 高校研究生教育背景，多项国家级荣誉加持的复合型人才。</p>
+
+  <div class="edu-grid">
+    <div class="glass-card edu-card reveal">
+      <div class="edu-school">南京大学</div>
+      <div class="edu-badge-row">
+        <span class="edu-badge badge-985">985</span>
+        <span class="edu-badge badge-c9">C9联盟</span>
+      </div>
+      <div class="edu-major">教育经济与管理（硕士）</div>
+      <div class="edu-period">2024.09 — 2027.06</div>
+      <ul class="honor-list">
+        <li>南京大学校研究生会主席</li>
+        <li>南京大学研究生常代会副会长</li>
+        <li>南京大学优秀研究生干部</li>
+        <li>优秀共青团干部</li>
+      </ul>
+    </div>
+    <div class="glass-card edu-card reveal reveal-delay-1">
+      <div class="edu-school">南京师范大学</div>
+      <div class="edu-badge-row">
+        <span class="edu-badge badge-211">211</span>
+      </div>
+      <div class="edu-major">行政管理（本科）</div>
+      <div class="edu-period">2020.09 — 2024.06</div>
+      <ul class="honor-list">
+        <li>南京师范大学院学生会主席</li>
+        <li>国家奖学金</li>
+        <li>江苏省三好学生</li>
+        <li>江苏省优秀毕业设计</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills & Abilities</div>
+  <h2 class="section-title">个人能力</h2>
+  <p class="section-subtitle">横跨产品设计、数据分析、AI 工程与国际沟通的复合技能体系。</p>
+
+  <div class="skills-layout">
+    <div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">产品 & 策略</div>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">搜索策略</span>
+          <span class="skill-chip highlight">AI产品设计</span>
+          <span class="skill-chip highlight">达人运营策略</span>
+          <span class="skill-chip">AB Test</span>
+          <span class="skill-chip">SPM 埋点</span>
+          <span class="skill-chip">用户增长</span>
+          <span class="skill-chip">GMV优化</span>
+          <span class="skill-chip">冷启策略</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-delay-1">
+        <div class="skill-group-title">数据 & 工程</div>
+        <div class="skill-chips">
+          <span class="skill-chip highlight">SQL</span>
+          <span class="skill-chip highlight">Python</span>
+          <span class="skill-chip">Excel</span>
+          <span class="skill-chip">Figma</span>
+          <span class="skill-chip highlight">Vibe Coding</span>
+          <span class="skill-chip">Work Agent 搭建</span>
+          <span class="skill-chip">AIGC 应用</span>
+        </div>
+      </div>
+      <div class="skill-group reveal reveal-delay-2">
+        <div class="skill-group-title">AIGC & 平台经验</div>
+        <div class="skill-chips">
+          <span class="skill-chip">素材智能生产</span>
+          <span class="skill-chip">大模型评测</span>
+          <span class="skill-chip">智能家居IoT</span>
+          <span class="skill-chip">内容分发</span>
+          <span class="skill-chip">搜索召回策略</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="glass-card lang-card reveal">
+        <div class="lang-score">IELTS 7</div>
+        <div class="lang-label">雅思综合成绩</div>
+        <div class="lang-sub">Speaking: 7 · 英文可作为工作语言</div>
+      </div>
+      <div class="glass-card edu-card reveal reveal-delay-1" style="padding:1.75rem">
+        <div class="skill-group-title" style="margin-bottom:1rem">学生领导力</div>
+        <ul class="honor-list">
+          <li>南京大学校研究生会主席</li>
+          <li>南京大学研究生常代会副会长</li>
+          <li>南京师范大学院学生会主席</li>
+          <li>国家奖学金 · 江苏省三好学生</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="glass-card contact-card reveal">
+    <div class="contact-name">Get in Touch</div>
+    <h2 class="contact-headline">期待下一段<br><span>精彩的合作</span></h2>
+    <p style="color:var(--text-muted);font-size:0.9rem">无论是产品、策略还是 AI 赛道，欢迎随时联系我探讨合作可能。</p>
+    <div class="contact-links">
+      <a class="contact-link" href="tel:13758067351">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6.5A2.5 2.5 0 014.5 4h1.372c.517 0 .968.349 1.1.85l1.034 4.136c.115.46-.086.94-.49 1.177l-1.323.773a11.047 11.047 0 005.87 5.871l.773-1.323a1.14 1.14 0 011.177-.49l4.136 1.034c.501.132.85.583.85 1.1V19.5A2.5 2.5 0 0117.5 22C9 22 2 15 2 6.5z"/></svg>
+        13758067351
+      </a>
+      <a class="contact-link" href="mailto:elaine_zmd@163.com">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 6.75l9.75 6.75 9.75-6.75M2.25 6.75A2.25 2.25 0 014.5 4.5h15a2.25 2.25 0 012.25 2.25v10.5A2.25 2.25 0 0119.5 19.5h-15a2.25 2.25 0 01-2.25-2.25V6.75z"/></svg>
+        elaine_zmd@163.com
+      </a>
+      <a class="contact-link" href="#">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.25 6.75A3.75 3.75 0 0112 3a3.75 3.75 0 013.75 3.75v.75H8.25v-.75zM3.75 9h16.5l-1.5 10.5H5.25L3.75 9z"/></svg>
+        微信: zhumengdan1004
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 朱梦丹 · Portfolio</span>
+  <span>Built with precision · Powered by ambition</span>
+</footer>
+
+<script>
+// Cursor
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=(mx-3)+'px';dot.style.top=(my-3)+'px';
+});
+function animRing(){
+  rx+=(mx-rx-16)*0.12;
+  ry+=(my-ry-16)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.glass-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='scale(1.5)';ring.style.opacity='0.7'});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='scale(1)';ring.style.opacity='1'});
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Parallax
+document.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  document.querySelector('.orb1').style.transform=`translateY(${y*0.15}px)`;
+  document.querySelector('.orb2').style.transform=`translateY(${y*0.1}px)`;
+});
+
+// Nav scroll shadow
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background=
+    window.scrollY>50?'rgba(8,8,16,0.92)':'rgba(8,8,16,0.7)';
+});
+</script>
+</body>
+</html>
